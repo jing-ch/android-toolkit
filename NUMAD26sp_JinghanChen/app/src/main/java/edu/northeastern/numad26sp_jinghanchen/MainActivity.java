@@ -25,13 +25,15 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button aboutMeButton = findViewById(R.id.btnAboutMe);
+    }
 
-        aboutMeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Jinghan Chen\nchen.jinghan@northeastern.edu", Toast.LENGTH_SHORT).show();
-            }
-        });
+    public void onClick(View view) {
+        int id = view.getId();
+
+        if (id == R.id.btnAboutMe) {
+            Toast.makeText(this,
+                    "Jinghan Chen\nchen.jinghan@northeastern.edu",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
