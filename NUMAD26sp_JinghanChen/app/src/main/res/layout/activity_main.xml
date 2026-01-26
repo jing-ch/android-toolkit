@@ -13,11 +13,10 @@
         android:layout_height="wrap_content"
         android:text="Hello World!"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnAboutMe" />
+        app:layout_constraintBottom_toTopOf="@id/btnQuicCalc" />
 
     <Button
         android:id="@+id/btnAboutMe"
@@ -28,6 +27,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtHello" />
+        app:layout_constraintTop_toBottomOf="@id/btnQuicCalc" />
+
+    <Button
+        android:id="@+id/btnQuicCalc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quic Calc"
+        app:layout_constraintBottom_toTopOf="@+id/btnAboutMe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHello" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
