@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD26sp_JinghanChen">
         <activity
+            android:name=".QuicCalcActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -33,6 +33,7 @@
         android:id="@+id/btnQuicCalc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClick"
         android:text="Quic Calc"
         app:layout_constraintBottom_toTopOf="@+id/btnAboutMe"
         app:layout_constraintEnd_toEndOf="parent"
