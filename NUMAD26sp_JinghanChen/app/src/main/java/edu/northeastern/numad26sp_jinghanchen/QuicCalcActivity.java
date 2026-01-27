@@ -1,6 +1,7 @@
 package edu.northeastern.numad26sp_jinghanchen;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,39 +28,41 @@ public class QuicCalcActivity extends AppCompatActivity {
 
         txtDisplay = findViewById(R.id.txtDisplay);
 
-        // declare buttons
-        int[] numberButtons = {
-                R.id.btn1, R.id.btn2, R.id.btn3,
-                R.id.btn4, R.id.btn5, R.id.btn6,
-                R.id.btn7, R.id.btn8, R.id.btn9,
-                R.id.btn0
-        };
-        for (int id : numberButtons) {
-            findViewById(id).setOnClickListener(v -> {
-                txtDisplay.append(((Button)v).getText().toString());
-            });
+    }
+
+    public void onCalcClick(View view) {
+        int id = view.getId();
+        Button btn = (Button) view;
+        String btnText = btn.getText().toString();
+        String display = txtDisplay.getText().toString();
+
+        if (id == R.id.btnDel) {
+            // del button
+            if (!display.equals("CALC") && !display.isEmpty()) {
+                display = display.substring(0, display.length() - 1);
+                if (display.isEmpty()) {
+                    display = "CALC";
+                }
+            }
+            txtDisplay.setText(display);
+        } else if (id == R.id.btnEquals) {
+            // equals button
+            if (!display.equals("CALC")) {
+                try {
+                    int result = evaluate(display);
+                    txtDisplay.setText(String.valueOf(result));
+                } catch (Exception e) {
+                    txtDisplay.setText("CALC");
+                }
+            }
+        } else if (id == R.id.btnPlus || id == R.id.btnMinus || btnText.matches("[0-9]") ) {
+            // + or - or numbers button
+            if (display.equals("CALC")) {
+                txtDisplay.setText(btnText);
+            } else {
+                txtDisplay.append(btnText);
+            }
         }
-
-        findViewById(R.id.btnPlus).setOnClickListener(v -> txtDisplay.append("+"));
-        findViewById(R.id.btnMinus).setOnClickListener(v -> txtDisplay.append("-"));
-
-        findViewById(R.id.btnDel).setOnClickListener(v -> {
-            String text = txtDisplay.getText().toString();
-            if (!text.isEmpty()) {
-                txtDisplay.setText(text.substring(0, text.length() - 1));
-            }
-        });
-
-        // Evaluate expression
-        findViewById(R.id.btnEquals).setOnClickListener(v -> {
-            try {
-                String expr = txtDisplay.getText().toString();
-                int result = evaluate(expr);
-                txtDisplay.setText(String.valueOf(result));
-            } catch (Exception e) {
-                txtDisplay.setText("Error");
-            }
-        });
     }
 
     private int evaluate(String expr) {
@@ -82,4 +85,6 @@ public class QuicCalcActivity extends AppCompatActivity {
         }
         return result;
     }
+
+
 }
