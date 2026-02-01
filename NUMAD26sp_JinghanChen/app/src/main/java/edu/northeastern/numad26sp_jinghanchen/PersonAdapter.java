@@ -43,8 +43,8 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
         // sets the name of the person to the name textview of the viewholder.
         holder.name.setText(people.get(position).getName());
-        // sets the age of the person to the age textview of the viewholder.
-        holder.age.setText(String.valueOf(people.get(position).getAge()));
+        // sets the url of the person to the url textview of the viewholder.
+        holder.url.setText(String.valueOf(people.get(position).getUrl()));
 
         // set a click event on the whole itemView (every element of the recyclerview).
         holder.itemView.setOnClickListener(view -> {

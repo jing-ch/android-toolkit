@@ -8,21 +8,24 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="John Doe"
-        android:layout_margin="16dp"
+        tools:text="Lady Gaga"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:textSize="20sp"
-        android:layout_toStartOf="@id/age"
         android:textColor="@color/black"
         android:layout_alignParentStart="true"/>
 
     <TextView
-        android:id="@+id/age"
+        android:id="@+id/url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="18"
-        android:layout_margin="16dp"
-        android:textSize="20sp"
+        tools:text="https://en.wikipedia.org/wiki/Lady_Gaga"
+        android:layout_below="@id/name"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="14sp"
         android:textColor="@color/black"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

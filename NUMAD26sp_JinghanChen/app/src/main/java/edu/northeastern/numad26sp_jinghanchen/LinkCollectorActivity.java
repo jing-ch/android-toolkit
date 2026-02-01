@@ -35,7 +35,7 @@ public class LinkCollectorActivity extends AppCompatActivity {
         personList = new ArrayList<>();
 
         //Adding a new person object to the personList arrayList
-        personList.add(new Person("John Doe", 18));
+        personList.add(new Person("Lady Gaga", "https://en.wikipedia.org/wiki/Lady_Gaga"));
 
         peopleRecyclerView = findViewById(R.id.people_recycler_view);
 

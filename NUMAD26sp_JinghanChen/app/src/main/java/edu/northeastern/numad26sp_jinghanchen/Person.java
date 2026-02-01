@@ -4,25 +4,25 @@ public class Person {
 
     private final String name;
 
-    private final int age;
+    private final String url;
 
     /**
-     * Constructs a person object with the specified name and age.
+     * Constructs a person object with the specified name and url.
      *
      * @param name - name to be given to the person.
-     * @param age -  age of the person.
+     * @param url -  url of the person.
      */
-    public Person(String name, int age) {
+    public Person(String name, String url) {
         this.name = name;
-        this.age = age;
+        this.url = url;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public String getUrl() {
+        return url;
     }
 }
 
