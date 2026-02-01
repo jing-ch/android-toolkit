@@ -2,4 +2,5 @@
 <resources>
     <string name="about_me">About Me</string>
     <string name="quic_calc">Quic Calc</string>
+    <string name="link_collector">Link Collector</string>
 </resources>

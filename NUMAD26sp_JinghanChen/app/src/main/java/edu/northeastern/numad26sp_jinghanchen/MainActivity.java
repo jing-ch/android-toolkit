@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.btnQuicCalc) {
             Intent intent = new Intent(MainActivity.this, QuicCalcActivity.class);
             startActivity(intent);
+        } else if (id == R.id.btnLinkCollector) {
+            Intent intent = new Intent(MainActivity.this, LinkCollectorActivity.class);
+            startActivity(intent);
         }
     }
 }
