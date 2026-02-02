@@ -107,7 +107,6 @@ public class LinkCollectorActivity extends AppCompatActivity {
             personList = savedInstanceState.getParcelableArrayList(KEY_PERSON_LIST);
         } else {
             personList = new ArrayList<>();
-            personList.add(new Person("Lady Gaga", "https://en.wikipedia.org/wiki/Lady_Gaga"));
         }
         // Setup adapter
         adapter = new PersonAdapter(personList, this);
