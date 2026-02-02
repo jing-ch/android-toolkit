@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
         int id = view.getId();
 
         if (id == R.id.btnAboutMe) {
-            Toast.makeText(this,
-                    "Jinghan Chen\nchen.jinghan@northeastern.edu",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, AboutMeActivity.class);
+            startActivity(intent);
         } else if (id == R.id.btnQuicCalc) {
             Intent intent = new Intent(MainActivity.this, QuicCalcActivity.class);
             startActivity(intent);
