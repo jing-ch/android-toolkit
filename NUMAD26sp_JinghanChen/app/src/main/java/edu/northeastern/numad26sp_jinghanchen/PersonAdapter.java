@@ -1,6 +1,8 @@
 package edu.northeastern.numad26sp_jinghanchen;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -41,11 +43,25 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
-        // sets the name of the person to the name textview of the viewholder.
-        holder.name.setText(people.get(position).getName());
-        // sets the url of the person to the url textview of the viewholder.
-        holder.url.setText(String.valueOf(people.get(position).getUrl()));
+        Person person = people.get(position);
 
+        // sets the name of the person to the name textview of the viewholder.
+        holder.name.setText(person.getName());
+        // sets the url of the person to the url textview of the viewholder.
+        holder.url.setText(String.valueOf(person.getUrl()));
+
+        // Open URL in browser when clicked
+        holder.url.setOnClickListener(view -> {
+            String url = person.getUrl();
+
+            // Make sure it starts with http:// or https://
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://" + url;
+            }
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(browserIntent);
+        });
     }
 
     @Override
