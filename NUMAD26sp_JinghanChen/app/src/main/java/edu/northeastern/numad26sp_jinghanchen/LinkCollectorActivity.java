@@ -6,11 +6,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,6 +60,45 @@ public class LinkCollectorActivity extends AppCompatActivity {
         fab.setOnClickListener(v -> {
             showAddLinkDialog();
         });
+
+        // handle swipe left or right to delete
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            Person recentlyDeletedPerson;
+            int recentlyDeletedPosition;
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false; // We are not supporting drag & drop
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                // Get position
+                int position = viewHolder.getAdapterPosition();
+                recentlyDeletedPerson = personList.get(position);
+                recentlyDeletedPosition = position;
+
+                // Remove the item from list
+                personList.remove(position);
+                adapter.notifyItemRemoved(position);
+
+                // Show snackbar with undo
+                View rootView = findViewById(android.R.id.content);
+                Snackbar.make(rootView, "Link deleted", Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", v -> {
+                            // Restore the deleted item
+                            personList.add(recentlyDeletedPosition, recentlyDeletedPerson);
+                            adapter.notifyItemInserted(recentlyDeletedPosition);
+                        }).show();
+            }
+        };
+
+// Attach to RecyclerView
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(peopleRecyclerView);
     }
 
     private void showAddLinkDialog() {
