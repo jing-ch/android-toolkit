@@ -1,10 +1,13 @@
 package edu.northeastern.numad26sp_jinghanchen;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
 
 /**
  * An implementation of the recyclerview viewholder that is created specifically with respect to the
@@ -16,11 +19,14 @@ public class PersonViewHolder extends RecyclerView.ViewHolder {
 
     public TextView name;
     public TextView url;
+    public MaterialButton editButton;
+
 
     public PersonViewHolder(@NonNull View itemView) {
         super(itemView);
         this.name = itemView.findViewById(R.id.name);
         this.url = itemView.findViewById(R.id.url);
+        this.editButton = itemView.findViewById(R.id.btn_edit);
     }
 }
 
