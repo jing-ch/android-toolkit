@@ -30,6 +30,8 @@ public class LinkCollectorActivity extends AppCompatActivity {
     List<Person> personList;
     PersonAdapter adapter;
 
+    private static final String KEY_PERSON_LIST = "person_list";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,8 +99,19 @@ public class LinkCollectorActivity extends AppCompatActivity {
             }
         };
 
-// Attach to RecyclerView
+        // initializing for persissting data while rotating
+        // Attach to RecyclerView
         new ItemTouchHelper(simpleCallback).attachToRecyclerView(peopleRecyclerView);
+        // Instantiate the arraylist
+        if (savedInstanceState != null) {
+            personList = savedInstanceState.getParcelableArrayList(KEY_PERSON_LIST);
+        } else {
+            personList = new ArrayList<>();
+            personList.add(new Person("Lady Gaga", "https://en.wikipedia.org/wiki/Lady_Gaga"));
+        }
+        // Setup adapter
+        adapter = new PersonAdapter(personList, this);
+        peopleRecyclerView.setAdapter(adapter);
     }
 
     private void showAddLinkDialog() {
@@ -130,4 +143,13 @@ public class LinkCollectorActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", null)
                 .show();
     }
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save the list as an ArrayList of Parcelable
+        outState.putParcelableArrayList(KEY_PERSON_LIST, new ArrayList<>(personList));
+    }
 }
+
