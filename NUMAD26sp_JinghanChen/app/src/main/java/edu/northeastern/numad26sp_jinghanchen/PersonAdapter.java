@@ -46,10 +46,6 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         // sets the url of the person to the url textview of the viewholder.
         holder.url.setText(String.valueOf(people.get(position).getUrl()));
 
-        // set a click event on the whole itemView (every element of the recyclerview).
-        holder.itemView.setOnClickListener(view -> {
-            Toast.makeText(context, people.get(position).getName(), Toast.LENGTH_SHORT).show();
-        });
     }
 
     @Override
