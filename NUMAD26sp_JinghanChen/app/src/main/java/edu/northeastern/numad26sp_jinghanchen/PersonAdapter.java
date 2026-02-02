@@ -11,7 +11,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -99,6 +102,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
                         // Update the object
                         people.set(position, new Person(newName, newUrl));
                         notifyItemChanged(position);
+
+                        // Show Snackbar after edit
+                        if (context instanceof AppCompatActivity) {
+                            View rootView = ((AppCompatActivity) context).findViewById(android.R.id.content);
+                            Snackbar.make(rootView, "Link updated", Snackbar.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(context, "Both fields are required", Toast.LENGTH_SHORT).show();
                     }
