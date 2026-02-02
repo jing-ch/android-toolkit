@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +42,6 @@ public class LinkCollectorActivity extends AppCompatActivity {
 
         //Instantiate the arraylist
         personList = new ArrayList<>();
-
-        //Adding a new person object to the personList arrayList
-        personList.add(new Person("Lady Gaga", "https://en.wikipedia.org/wiki/Lady_Gaga"));
 
         peopleRecyclerView = findViewById(R.id.people_recycler_view);
 
@@ -78,6 +76,12 @@ public class LinkCollectorActivity extends AppCompatActivity {
                     if (!name.isEmpty() && !url.isEmpty()) {
                         personList.add(new Person(name, url));
                         adapter.notifyItemInserted(personList.size() - 1);
+
+                        // Show Snackbar message
+                        Snackbar.make(findViewById(R.id.linkCollect),
+                                        name + " added to the list",
+                                        Snackbar.LENGTH_SHORT)
+                                .show();
                     } else {
                         Toast.makeText(this, "Both fields are required", Toast.LENGTH_SHORT).show();
                     }
