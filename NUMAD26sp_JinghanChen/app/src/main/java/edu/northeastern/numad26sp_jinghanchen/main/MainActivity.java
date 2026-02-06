@@ -13,6 +13,7 @@ import android.content.Intent;
 
 import edu.northeastern.numad26sp_jinghanchen.about_me.AboutMeActivity;
 import edu.northeastern.numad26sp_jinghanchen.link_collector.LinkCollectorActivity;
+import edu.northeastern.numad26sp_jinghanchen.prime_finder.PrimeFinderActivity;
 import edu.northeastern.numad26sp_jinghanchen.quic_calc.QuicCalcActivity;
 import edu.northeastern.numad26sp_jinghanchen.R;
 
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         } else if (id == R.id.btnLinkCollector) {
             Intent intent = new Intent(MainActivity.this, LinkCollectorActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.btnPrimeFinders) {
+            Intent intent = new Intent(MainActivity.this, PrimeFinderActivity.class);
             startActivity(intent);
         }
     }
