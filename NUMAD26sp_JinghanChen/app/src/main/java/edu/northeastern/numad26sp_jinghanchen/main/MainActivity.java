@@ -1,4 +1,4 @@
-package edu.northeastern.numad26sp_jinghanchen;
+package edu.northeastern.numad26sp_jinghanchen.main;
 
 import android.os.Bundle;
 
@@ -9,8 +9,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.view.View;
-import android.widget.Toast;
 import android.content.Intent;
+
+import edu.northeastern.numad26sp_jinghanchen.about_me.AboutMeActivity;
+import edu.northeastern.numad26sp_jinghanchen.link_collector.LinkCollectorActivity;
+import edu.northeastern.numad26sp_jinghanchen.quic_calc.QuicCalcActivity;
+import edu.northeastern.numad26sp_jinghanchen.R;
 
 
 public class MainActivity extends AppCompatActivity {

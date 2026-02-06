@@ -1,4 +1,4 @@
-package edu.northeastern.numad26sp_jinghanchen;
+package edu.northeastern.numad26sp_jinghanchen.quic_calc;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import edu.northeastern.numad26sp_jinghanchen.R;
 
 public class QuicCalcActivity extends AppCompatActivity {
 

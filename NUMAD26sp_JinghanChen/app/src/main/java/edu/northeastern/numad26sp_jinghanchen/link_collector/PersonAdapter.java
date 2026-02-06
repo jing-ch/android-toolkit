@@ -1,4 +1,4 @@
-package edu.northeastern.numad26sp_jinghanchen;
+package edu.northeastern.numad26sp_jinghanchen.link_collector;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+
+import edu.northeastern.numad26sp_jinghanchen.R;
 
 /**
  * This is a recyclerview adapter class, the purpose of this class is to act as a bridge between the

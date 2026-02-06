@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD26sp_JinghanChen">
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".QuicCalcActivity"
+            android:name=".quic_calc.QuicCalcActivity"
             android:exported="false" />
         <activity
-            android:name=".LinkCollectorActivity"
+            android:name=".link_collector.LinkCollectorActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutMeActivity"
+            android:name=".about_me.AboutMeActivity"
             android:exported="false" />
     </application>
 

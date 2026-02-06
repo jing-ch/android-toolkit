@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".main.MainActivity">
 
     <TextView
         android:id="@+id/txtHello"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnLinkCollector" />
+        app:layout_constraintBottom_toTopOf="@id/btnAboutMe" />
 
     <Button
         android:id="@+id/btnAboutMe"
@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="@string/about_me"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnQuicCalc" />
+        app:layout_constraintTop_toBottomOf="@id/txtHello"
+        app:layout_constraintBottom_toTopOf="@+id/btnQuicCalc"/>
 
     <Button
         android:id="@+id/btnQuicCalc"
@@ -35,10 +35,10 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="@string/quic_calc"
-        app:layout_constraintBottom_toTopOf="@+id/btnLinkCollector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtHello" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAboutMe"
+        app:layout_constraintBottom_toTopOf="@+id/btnLinkCollector"/>
 
     <Button
         android:id="@+id/btnLinkCollector"
@@ -46,9 +46,20 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="@string/link_collector"
-        app:layout_constraintBottom_toTopOf="@+id/btnAboutMe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnQuicCalc" />
+        app:layout_constraintTop_toBottomOf="@+id/btnQuicCalc"
+        app:layout_constraintBottom_toTopOf="@+id/btnPrimeFinders"/>
+
+    <Button
+        android:id="@+id/btnPrimeFinders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/prime_finders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLinkCollector"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

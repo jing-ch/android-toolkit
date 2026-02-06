@@ -1,4 +1,4 @@
-package edu.northeastern.numad26sp_jinghanchen;
+package edu.northeastern.numad26sp_jinghanchen.link_collector;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,13 +1,14 @@
-package edu.northeastern.numad26sp_jinghanchen;
+package edu.northeastern.numad26sp_jinghanchen.link_collector;
 
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+
+import edu.northeastern.numad26sp_jinghanchen.R;
 
 /**
  * An implementation of the recyclerview viewholder that is created specifically with respect to the

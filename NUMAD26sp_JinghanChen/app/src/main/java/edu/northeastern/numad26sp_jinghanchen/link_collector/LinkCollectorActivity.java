@@ -1,4 +1,4 @@
-package edu.northeastern.numad26sp_jinghanchen;
+package edu.northeastern.numad26sp_jinghanchen.link_collector;
 
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +22,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.northeastern.numad26sp_jinghanchen.R;
 
 public class LinkCollectorActivity extends AppCompatActivity {
 
