@@ -12,126 +12,211 @@ import edu.northeastern.numad26sp_jinghanchen.R;
 
 public class PrimeFinderActivity extends AppCompatActivity {
 
-    private Button btnStart, btnTerminate;
-    private TextView tvCurrent, tvLatest;
+    // part 1 finder: approach 1 init
+
+    private Button btnStart1, btnStop1;
+    private TextView tvCurrent1, tvPrime1;
 
     private Handler handler;
+    private Thread thread1;
 
-    private Thread workerThread;
-    private boolean isRunning = false;
-    private boolean stopRequested = false;
+    private boolean running1 = false;
+    private boolean stop1 = false;
 
-    private int currentNumber = 3;
-    private int latestPrime = 0;
+    private int current1 = 3;
+    private int prime1 = 0;
+
+
+    // part 1 finder: approach 2 init
+
+    private Button btnStart2, btnStop2;
+    private TextView tvCurrent2, tvPrime2;
+
+    private Thread thread2;
+
+    private boolean running2 = false;
+    private boolean stop2 = false;
+
+    private int current2 = 3;
+    private int prime2 = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prime_finder);
 
-        btnStart = findViewById(R.id.btnStart);
-        btnTerminate = findViewById(R.id.btnTerminate);
-        tvCurrent = findViewById(R.id.tvCurrent);
-        tvLatest = findViewById(R.id.tvLatestPrime);
-
         handler = new Handler(Looper.getMainLooper());
 
-        // Restore state after rotation
+        // bind views
+        btnStart1 = findViewById(R.id.btnStart1);
+        btnStop1  = findViewById(R.id.btnStop1);
+        tvCurrent1 = findViewById(R.id.tvCurrent1);
+        tvPrime1   = findViewById(R.id.tvPrime1);
+
+        btnStart2 = findViewById(R.id.btnStart2);
+        btnStop2  = findViewById(R.id.btnStop2);
+        tvCurrent2 = findViewById(R.id.tvCurrent2);
+        tvPrime2   = findViewById(R.id.tvPrime2);
+
+        // restore after configuration change
         if (savedInstanceState != null) {
-            isRunning = savedInstanceState.getBoolean("running");
-            currentNumber = savedInstanceState.getInt("current");
-            latestPrime = savedInstanceState.getInt("latest");
+            // part 1 finder: approach 1
+            running1 = savedInstanceState.getBoolean("running1");
+            current1 = savedInstanceState.getInt("current1");
+            prime1   = savedInstanceState.getInt("prime1");
+            // part 1 finder: finder approach 2
+            running2 = savedInstanceState.getBoolean("running2");
+            current2 = savedInstanceState.getInt("current2");
+            prime2   = savedInstanceState.getInt("prime2");
         }
 
-        updateText();
+        updateText1();
+        updateText2();
 
-        btnStart.setOnClickListener(v -> startSearch());
-        btnTerminate.setOnClickListener(v -> stopSearch());
+        // part 1 finder approach 1 buttons
+        btnStart1.setOnClickListener(v -> startHandlerSearch());
+        btnStop1.setOnClickListener(v -> stop1 = true);
 
-        updateButtons();
+        // part 1 finder approach 2 buttons
+        btnStart2.setOnClickListener(v -> startRunOnUiSearch());
+        btnStop2.setOnClickListener(v -> stop2 = true);
 
-        // If rotation happened while running, resume automatically
-        if (isRunning) {
-            startWorker(currentNumber);
-        }
+        // resume after configuration change
+        if (running1) startHandlerSearchFromCurrent();
+        if (running2) startRunOnUiSearchFromCurrent();
     }
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("running", isRunning);
-        outState.putInt("current", currentNumber);
-        outState.putInt("latest", latestPrime);
+
+        // part 1 finder: approach 1
+        outState.putBoolean("running1", running1);
+        outState.putInt("current1", current1);
+        outState.putInt("prime1", prime1);
+
+        // part 1 finder: approach 2
+        outState.putBoolean("running2", running2);
+        outState.putInt("current2", current2);
+        outState.putInt("prime2", prime2);
     }
 
-    private void startSearch() {
-        if (isRunning) return;
 
-        // Restart from beginning after terminate
-        currentNumber = 3;
-        latestPrime = 0;
+    // finder approach 1
+    private void startHandlerSearch() {
+        if (running1) return;
 
-        updateText();
-        startWorker(currentNumber);
+        current1 = 3;
+        prime1 = 0;
+        stop1 = false;
+        running1 = true;
+
+        startThread1(current1);
     }
 
-    private void startWorker(int start) {
-        stopRequested = false;
-        isRunning = true;
-        updateButtons();
+    private void startHandlerSearchFromCurrent() {
+        stop1 = false;
+        startThread1(current1);
+    }
 
-        workerThread = new Thread(() -> {
+    private void startThread1(int start) {
+
+        thread1 = new Thread(() -> {
+
+            long lastUpdate = System.currentTimeMillis();
             int n = start;
 
-            long lastUpdateTime = System.currentTimeMillis();
+            while (!stop1) {
 
-            while (!stopRequested) {
-
-                currentNumber = n;
-
-                // update current number on UI
-                // update only once a while. to avoid updating too frequently and stuck.
-                long now = System.currentTimeMillis();
-                if (now - lastUpdateTime > 50) {
-                    handler.post(this::updateText);
-                    lastUpdateTime = now;
-                }
+                current1 = n;
 
                 if (isPrime(n)) {
-                    latestPrime = n;
-                    handler.post(this::updateText);
+                    prime1 = n;
+                }
+
+                long now = System.currentTimeMillis();
+                if (now - lastUpdate > 50) {
+                    handler.post(this::updateText1);
+                    lastUpdate = now;
                 }
 
                 n += 2;
             }
+
+            running1 = false;
         });
 
-        workerThread.start();
+        thread1.start();
     }
 
-    private void stopSearch() {
-        stopRequested = true;
-        isRunning = false;
-        updateButtons();
+    private void updateText1() {
+        tvCurrent1.setText("Current: " + current1);
+        tvPrime1.setText("Latest prime: " + prime1);
     }
 
+
+    // part 1 finder: approach 2
+    private void startRunOnUiSearch() {
+        if (running2) return;
+
+        current2 = 3;
+        prime2 = 0;
+        stop2 = false;
+        running2 = true;
+
+        startThread2(current2);
+    }
+
+    private void startRunOnUiSearchFromCurrent() {
+        stop2 = false;
+        startThread2(current2);
+    }
+
+    private void startThread2(int start) {
+
+        thread2 = new Thread(() -> {
+
+            long lastUpdate = System.currentTimeMillis();
+            int n = start;
+
+            while (!stop2) {
+
+                current2 = n;
+
+                if (isPrime(n)) {
+                    prime2 = n;
+                }
+
+                long now = System.currentTimeMillis();
+                if (now - lastUpdate > 50) {
+                    runOnUiThread(this::updateText2);
+                    lastUpdate = now;
+                }
+
+                n += 2;
+            }
+
+            running2 = false;
+        });
+
+        thread2.start();
+    }
+
+    private void updateText2() {
+        tvCurrent2.setText("Current: " + current2);
+        tvPrime2.setText("Latest prime: " + prime2);
+    }
+
+    // part 1 finder: this method is shared by approach 1 and 2.
     private boolean isPrime(int n) {
         if (n < 2) return false;
 
         for (int i = 2; i < n; i++) {
             if (n % i == 0) return false;
         }
-
         return true;
-    }
-
-    private void updateText() {
-        tvCurrent.setText("Current number: " + currentNumber);
-        tvLatest.setText("Latest prime: " + latestPrime);
-    }
-
-    private void updateButtons() {
-        btnStart.setEnabled(!isRunning);
-        btnTerminate.setEnabled(isRunning);
     }
 }

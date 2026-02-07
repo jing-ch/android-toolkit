@@ -1,51 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="55dp">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find Primes"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="36dp">
 
-    <Button
-        android:id="@+id/btnTerminate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Terminate Search"
-        app:layout_constraintTop_toBottomOf="@id/btnStart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
+        <!-- approach 1 -->
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Approach 1 — Handler"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/tvCurrent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Current number: 3"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/btnTerminate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        <Button
+            android:id="@+id/btnStart1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Start Primes (Handler)"
+            app:layout_constraintTop_toBottomOf="@id/title1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp" />
 
-    <TextView
-        android:id="@+id/tvLatestPrime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Latest prime: (none yet)"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/tvCurrent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
+        <Button
+            android:id="@+id/btnStop1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Stop"
+            app:layout_constraintTop_toBottomOf="@id/btnStart1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvCurrent1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Current: 3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/btnStop1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/tvPrime1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Latest prime: 0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvCurrent1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
+
+
+        <!-- approach 2 -->
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Approach 2 — runOnUiThread"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tvPrime1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/btnStart2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Start Primes (runOnUiThread)"
+            app:layout_constraintTop_toBottomOf="@id/title2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/btnStop2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Stop"
+            app:layout_constraintTop_toBottomOf="@id/btnStart2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tvCurrent2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Current: 3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/btnStop2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/tvPrime2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Latest prime: 0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvCurrent2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
