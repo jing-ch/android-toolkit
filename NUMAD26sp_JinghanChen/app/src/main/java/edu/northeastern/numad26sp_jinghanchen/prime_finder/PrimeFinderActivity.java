@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.northeastern.numad26sp_jinghanchen.R;
@@ -67,7 +69,6 @@ public class PrimeFinderActivity extends AppCompatActivity {
         cbPacifier = findViewById(R.id.cbPacifier);
 
 
-
         // restore after configuration change
         if (savedInstanceState != null) {
             // part 1 finder: approach 1
@@ -107,6 +108,29 @@ public class PrimeFinderActivity extends AppCompatActivity {
         // part 3: pacifier switch
         if (pacifierChecked) cbPacifier.setChecked(true);
 
+
+        // double check exit
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // If neither search is running, normal back behavior
+                if (!running1 && !running2) {
+                    setEnabled(false); // temporarily disable callback so back works normally
+                    getOnBackPressedDispatcher().onBackPressed();
+                    return;
+                }
+                // Otherwise, confirm exit
+                new AlertDialog.Builder(PrimeFinderActivity.this)
+                        .setTitle("Exit?")
+                        .setMessage("A prime search is running. Terminate the search and exit?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            stopAllSearches();
+                            finish(); // close activity
+                        })
+                        .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                        .show();
+            }
+        });
     }
 
 
@@ -128,7 +152,6 @@ public class PrimeFinderActivity extends AppCompatActivity {
         // part 3: pacifier switch
         outState.putBoolean("pacifierChecked", cbPacifier.isChecked());
     }
-
 
     // finder approach 1
     private void startHandlerSearch() {
@@ -249,6 +272,14 @@ public class PrimeFinderActivity extends AppCompatActivity {
     private void findGreatestPrime() {
         greatestPrime = Math.max(prime1, prime2);
         tvGreatestPrime.setText("Greatest prime: " + greatestPrime);
+    }
+
+    // part 4 stop all searches
+    private void stopAllSearches() {
+        stop1 = true;
+        stop2 = true;
+        running1 = false;
+        running2 = false;
     }
 
 }
