@@ -17,7 +17,7 @@
             android:id="@+id/title1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Approach 1 — Handler"
+            android:text="Part 1: Approach 1 - Handler"
             android:textStyle="bold"
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
@@ -72,7 +72,7 @@
             android:id="@+id/title2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Approach 2 — runOnUiThread"
+            android:text="Part 1: Approach 2 - runOnUiThread"
             android:textStyle="bold"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/tvPrime1"
@@ -123,15 +123,27 @@
             android:layout_marginTop="4dp" />
 
         <!-- part 2: greatest prime -->
+        <TextView
+            android:id="@+id/title3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Part 2:"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tvPrime2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
         <Button
             android:id="@+id/btnFindGreatestPrime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Find Greatest Prime"
-            app:layout_constraintTop_toBottomOf="@id/tvPrime2"
+            app:layout_constraintTop_toBottomOf="@id/title3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             />
 
         <TextView
@@ -144,8 +156,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             />
+
+        <!-- pacifier switch -->
+        <TextView
+            android:id="@+id/title4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Part 3:"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tvGreatestPrime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <CheckBox
+            android:id="@+id/cbPacifier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pacifier Switch"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/title4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

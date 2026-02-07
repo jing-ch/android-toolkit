@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,9 @@ public class PrimeFinderActivity extends AppCompatActivity {
     private TextView tvGreatestPrime;
     private int greatestPrime = 0;
 
+    // part 3: pacifier switch
+    private CheckBox cbPacifier;
+    private boolean pacifierChecked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,9 @@ public class PrimeFinderActivity extends AppCompatActivity {
         // part 2: greatest prime
         btnFindGreatestPrime = findViewById(R.id.btnFindGreatestPrime);
         tvGreatestPrime = findViewById(R.id.tvGreatestPrime);
+        // part 3: pacifier switch
+        cbPacifier = findViewById(R.id.cbPacifier);
+
 
 
         // restore after configuration change
@@ -73,10 +80,9 @@ public class PrimeFinderActivity extends AppCompatActivity {
             prime2   = savedInstanceState.getInt("prime2");
             // part 2: greatest prime
             greatestPrime = savedInstanceState.getInt("greatestPrime");
+            // part 3: pacifier switch
+            cbPacifier.setChecked(savedInstanceState.getBoolean("pacifierChecked", false));
         }
-
-        updateText1();
-        updateText2();
 
         // handling events with click listeners
         // part 1 finder approach 1 buttons
@@ -87,6 +93,8 @@ public class PrimeFinderActivity extends AppCompatActivity {
         btnStop2.setOnClickListener(v -> stop2 = true);
         // part 2: greatest prime
         btnFindGreatestPrime.setOnClickListener(v -> findGreatestPrime());
+        // part 3: pacifier switch
+        cbPacifier.setOnClickListener(v -> pacifierChecked = cbPacifier.isChecked());
 
 
         // resume after configuration change
@@ -96,6 +104,9 @@ public class PrimeFinderActivity extends AppCompatActivity {
         if (running2) startRunOnUiSearchFromCurrent();
         // part 2: greatest prime
         if (greatestPrime > 0) findGreatestPrime();
+        // part 3: pacifier switch
+        if (pacifierChecked) cbPacifier.setChecked(true);
+
     }
 
 
@@ -114,6 +125,8 @@ public class PrimeFinderActivity extends AppCompatActivity {
         outState.putInt("prime2", prime2);
         // part 2: greatest prime
         outState.putInt("greatestPrime", greatestPrime);
+        // part 3: pacifier switch
+        outState.putBoolean("pacifierChecked", cbPacifier.isChecked());
     }
 
 
