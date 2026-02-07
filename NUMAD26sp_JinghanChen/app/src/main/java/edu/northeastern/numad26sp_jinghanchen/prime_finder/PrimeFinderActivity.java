@@ -83,12 +83,19 @@ public class PrimeFinderActivity extends AppCompatActivity {
         workerThread = new Thread(() -> {
             int n = start;
 
+            long lastUpdateTime = System.currentTimeMillis();
+
             while (!stopRequested) {
 
                 currentNumber = n;
 
                 // update current number on UI
-                handler.post(this::updateText);
+                // update only once a while. to avoid updating too frequently and stuck.
+                long now = System.currentTimeMillis();
+                if (now - lastUpdateTime > 50) {
+                    handler.post(this::updateText);
+                    lastUpdateTime = now;
+                }
 
                 if (isPrime(n)) {
                     latestPrime = n;
