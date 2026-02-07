@@ -120,8 +120,32 @@
             app:layout_constraintTop_toBottomOf="@id/tvCurrent2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
+
+        <!-- part 2: greatest prime -->
+        <Button
+            android:id="@+id/btnFindGreatestPrime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Find Greatest Prime"
+            app:layout_constraintTop_toBottomOf="@id/tvPrime2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp"
+            />
+
+        <TextView
+            android:id="@+id/tvGreatestPrime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Greatest prime: 0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/btnFindGreatestPrime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="4dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
