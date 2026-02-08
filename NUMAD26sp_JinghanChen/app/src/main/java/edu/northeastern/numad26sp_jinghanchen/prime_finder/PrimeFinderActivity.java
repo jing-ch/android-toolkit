@@ -88,10 +88,16 @@ public class PrimeFinderActivity extends AppCompatActivity {
         // handling events with click listeners
         // part 1 finder approach 1 buttons
         btnStart1.setOnClickListener(v -> startHandlerSearch());
-        btnStop1.setOnClickListener(v -> stop1 = true);
+        btnStop1.setOnClickListener(v -> {
+                    handler.post(this::updateText1);
+                    stop1 = true;
+                });
         // part 1 finder approach 2 buttons
         btnStart2.setOnClickListener(v -> startRunOnUiSearch());
-        btnStop2.setOnClickListener(v -> stop2 = true);
+        btnStop2.setOnClickListener(v -> {
+                    handler.post(this::updateText2);
+                    stop2 = true;
+                });
         // part 2: greatest prime
         btnFindGreatestPrime.setOnClickListener(v -> findGreatestPrime());
         // part 3: pacifier switch
