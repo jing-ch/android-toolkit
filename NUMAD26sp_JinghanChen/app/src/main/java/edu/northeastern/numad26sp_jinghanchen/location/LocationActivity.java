@@ -40,6 +40,12 @@ public class LocationActivity extends AppCompatActivity {
         textLatLng = findViewById(R.id.textLatLng);
         textDistance = findViewById(R.id.textDistance);
 
+        if (savedInstanceState != null) {
+            totalDistance = savedInstanceState.getFloat("totalDistance");
+            lastLocation = savedInstanceState.getParcelable("lastLocation");
+            textDistance.setText("Total Distance: " + String.format("%.2f", totalDistance) + " m");
+        }
+
         Button buttonReset = findViewById(R.id.buttonReset);
         buttonReset.setOnClickListener(v -> {
             totalDistance = 0f;
@@ -86,6 +92,13 @@ public class LocationActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST_CODE);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putFloat("totalDistance", totalDistance);
+        outState.putParcelable("lastLocation", lastLocation);
     }
 
     private void startLocationUpdates() {
