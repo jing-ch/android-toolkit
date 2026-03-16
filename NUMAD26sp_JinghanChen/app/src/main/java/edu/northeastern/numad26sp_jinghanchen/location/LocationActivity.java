@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -51,6 +53,18 @@ public class LocationActivity extends AppCompatActivity {
             totalDistance = 0f;
             lastLocation = null;
             textDistance.setText("Total Distance: 0.00 m");
+        });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(LocationActivity.this)
+                        .setTitle("Discard Distance?")
+                        .setMessage("Your total distance will be lost if you go back.")
+                        .setPositiveButton("Discard", (dialog, which) -> finish())
+                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                        .show();
+            }
         });
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
