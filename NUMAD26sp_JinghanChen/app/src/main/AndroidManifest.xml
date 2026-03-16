@@ -32,6 +32,9 @@
         <activity
             android:name=".about_me.AboutMeActivity"
             android:exported="false" />
+        <activity
+            android:name=".location.LocationActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
