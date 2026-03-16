@@ -64,10 +64,17 @@ public class LocationActivity extends AppCompatActivity {
                 textLatLng.setText("Latitude: " + lat + "\nLongitude: " + lng);
 
                 if (lastLocation != null) {
-                    totalDistance += lastLocation.distanceTo(newLocation);
-                    textDistance.setText("Total Distance: " + String.format("%.2f", totalDistance) + " m");
+                    float delta = lastLocation.distanceTo(newLocation);
+                    // ignore dis increase if the distance is less than 10 meters,
+                    // this is to cope with gps inaccuracy.
+                    if (delta > 5.0f) {
+                        totalDistance += delta;
+                        textDistance.setText("Total Distance: " + String.format("%.2f", totalDistance) + " m");
+                        lastLocation = newLocation;
+                    }
+                } else {
+                    lastLocation = newLocation;
                 }
-                lastLocation = newLocation;
             }
         };
 
