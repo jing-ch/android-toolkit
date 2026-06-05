@@ -12,13 +12,13 @@
 
 ## Screenshots
 
-| Prime Finder | Location Tracker | Link Collector |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/prime_finder.png" width="220" alt="Prime Finder" /> | <img src="docs/screenshots/location_tracker.png" width="220" alt="Location Tracker" /> | <img src="docs/screenshots/link_collector.png" width="220" alt="Link Collector" /> |
-
-| Quic Calc | About Me |
+| Prime Finder | Location Tracker |
 | :---: | :---: |
-| <img src="docs/screenshots/quic_calc.png" width="220" alt="Quic Calc" /> | <img src="docs/screenshots/about_me.png" width="220" alt="About Me" /> |
+| <img src="docs/screenshots/prime_finder.png" width="220" alt="Prime Finder" /> | <img src="docs/screenshots/location_tracker.png" width="220" alt="Location Tracker" /> |
+
+| Link Collector | Quic Calc |
+| :---: | :---: |
+| <img src="docs/screenshots/link_collector.png" width="220" alt="Link Collector" /> | <img src="docs/screenshots/quic_calc.png" width="220" alt="Quic Calc" /> |
 
 ---
 
